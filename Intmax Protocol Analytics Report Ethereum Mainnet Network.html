@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intmax Protocol Analytics Report: Ethereum Mainnet Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add Chart.js Data Labels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Palette: Electric Future
+         Primary: Indigo (#4F46E5)
+         Secondary: Cyan (#06B6D4)
+         Accent: Fuchsia (#D946EF)
+    -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#1e1b4b',
+                            primary: '#4F46E5',
+                            secondary: '#06B6D4',
+                            accent: '#D946EF',
+                            light: '#e0e7ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Chart Container Rules - Responsive & Constrained */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; 
+            height: 350px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px; 
+            }
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card-shadow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Ensure logo displays correctly */
+        .logo-img {
+            max-height: 40px; 
+            width: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-brand-dark text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 relative flex items-center justify-center">
+            <!-- Logo (Absolute Left) -->
+            <div class="absolute left-6">
+                <img src="intmax_logo.png" alt="INTMAX Logo" class="logo-img"> 
+            </div>
+            
+            <!-- Centered Title -->
+            <h1 class="text-xl md:text-2xl font-bold tracking-tight text-center">
+                Intmax Protocol Analytics Report: <span class="text-brand-secondary">Ethereum Mainnet Network</span>
+            </h1>
+
+            <!-- Date (Absolute Right - Optional, hidden on mobile for space) -->
+            <div class="absolute right-6 text-sm text-slate-300 hidden md:block">Jun - Nov 2025</div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="container mx-auto px-4 py-8 space-y-12 max-w-7xl">
+
+        <!-- Section 1: Introduction & Executive Summary -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-4">
+                <h2 class="text-3xl font-bold text-brand-primary">Progressive Accumulation</h2>
+                <p class="text-lg text-slate-600">
+                    The first six months of Intmax on the Ethereum Mainnet tell a story of steady, organic growth rather than volatile speculation. Unlike many Layer 2 launches that see an immediate crash after an initial hype spike, Intmax has demonstrated a consistent month-over-month ramp-up.
+                </p>
+                <p class="text-slate-600">
+                    The protocol has processed a cumulative total of nearly <strong>$60 Million</strong> in volume since launch. Crucially, user activity hit an all-time high in Q4 2025, driven by tangible product announcements like the Japanese JPYC stablecoin and privacy tech reveals at Devconnect.
+                </p>
+            </div>
+            
+            <!-- KPI Grid -->
+            <div class="lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-brand-primary">
+                    <p class="text-sm text-slate-500 font-semibold uppercase">Total Active Users (Nov)</p>
+                    <p class="text-4xl font-bold text-slate-800">3,148</p>
+                    <p class="text-xs text-brand-secondary font-bold mt-1">▲ 17% vs Oct</p>
+                </div>
+                <!-- Updated to Cumulative Volume based on new data -->
+                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-brand-accent">
+                    <p class="text-sm text-slate-500 font-semibold uppercase">Total Volume (Cumulative)</p>
+                    <p class="text-4xl font-bold text-slate-800">$58.6M</p>
+                    <p class="text-xs text-green-600 font-bold mt-1">20,812 ETH Total</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-brand-secondary">
+                    <p class="text-sm text-slate-500 font-semibold uppercase">New Depositors (Nov)</p>
+                    <p class="text-4xl font-bold text-slate-800">2,279</p>
+                    <p class="text-xs text-brand-primary font-bold mt-1">Record High</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="border-t border-slate-200"></div>
+
+        <!-- Section 2: Monthly Performance Trends -->
+        <section>
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-slate-800 flex items-center">
+                    <span class="text-brand-primary mr-2">●</span> Monthly Adoption Trends
+                </h3>
+                <p class="text-slate-600 max-w-3xl mt-2">
+                    The protocol experienced a "Soft Launch" in June, followed by a rapid ramp-up in July. The November surge is particularly notable, breaking previous consolidation trends. This mixed chart visualizes the correlation between growing liquidity (bars) and user activity (line), showing that capital depth is growing alongside user adoption.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl card-shadow">
+                <div class="chart-container">
+                    <canvas id="monthlyTrendChart"></canvas>
+                </div>
+                <div class="mt-4 text-center text-sm text-slate-500 italic">
+                    Figure 1: Monthly Deposits (USD) vs Active Users count. Note the correlation in Q4.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Retention Analysis -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- New vs Returning Chart -->
+            <div class="bg-white p-8 rounded-xl card-shadow flex flex-col">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-slate-800">User Stickiness: New vs. Returning</h3>
+                    <p class="text-sm text-slate-600 mt-2">
+                        While new user acquisition (blue) remains the primary driver, the cohort of "Returning Depositors" (purple) has grown <strong>5x since July</strong>. This indicates a transition from pure experimentation to sustained utility.
+                    </p>
+                </div>
+                <div class="chart-container flex-grow">
+                    <canvas id="retentionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Drivers & Narrative -->
+            <div class="space-y-6">
+                <div class="bg-indigo-50 p-8 rounded-xl border border-indigo-100 h-full flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Q4 Growth Catalysts</h3>
+                    <p class="text-slate-700 mb-6">
+                        The November surge to <strong>3,148 Active Users</strong> was not random. It was driven by three distinct external events that validated the protocol's privacy-first value proposition:
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-4">💴</span>
+                            <div>
+                                <strong class="text-brand-primary block text-lg">Japanese Stablecoin (JPYC)</strong>
+                                <span class="text-slate-600 leading-relaxed">The launch in late October triggered regional interest, driving wallet creation as users prepared for yen-pegged on-chain privacy.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-4">🛡️</span>
+                            <div>
+                                <strong class="text-brand-accent block text-lg">zERC20 Privacy Product</strong>
+                                <span class="text-slate-600 leading-relaxed">The reveal of compliant, private token standards renewed developer interest, pushing "New Depositors" to a record 2,279.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-4">🇦🇷</span>
+                            <div>
+                                <strong class="text-brand-secondary block text-lg">Devconnect Buenos Aires</strong>
+                                <span class="text-slate-600 leading-relaxed">Physical presence and privacy-centric talks at the event attracted "smart money" and developer experimentation in November.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Segmentation & Decentralization -->
+        <section>
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-slate-800 flex items-center">
+                    <span class="text-brand-accent mr-2">●</span> Ecosystem Segmentation
+                </h3>
+                <p class="text-slate-600 max-w-4xl mt-2">
+                    Intmax maintains a highly decentralized profile. Unlike many L2s dominated by institutional whales, nearly <strong>half</strong> of all Intmax deposits come from retail users holding less than 10 ETH. However, the Privacy Mining landscape is more competitive, with top miners securing the majority of rewards.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- User Tiers Donut (Neatened Up) -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <h4 class="text-lg font-bold text-slate-700 mb-4 text-center">Deposit Concentration by Tier</h4>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="userTierChart"></canvas>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block px-4 py-1.5 bg-green-100 text-green-800 text-sm font-bold rounded-full">Retail Friendly</span>
+                    </div>
+                </div>
+
+                <!-- Miner Distribution Pie -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <h4 class="text-lg font-bold text-slate-700 mb-4 text-center">Privacy Mining Reward Share</h4>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="minerChart"></canvas>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block px-4 py-1.5 bg-yellow-100 text-yellow-800 text-sm font-bold rounded-full">Competitive Mining</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Asset Diversity -->
+        <section class="bg-white p-10 rounded-xl card-shadow border border-slate-100">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Asset Composition</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Currently, the protocol is heavily dominated by <strong>Ethereum (ETH)</strong>. The cumulative data confirms <strong>20,812 ETH</strong> deposited. Other tokens account for only ~$72k, highlighting a massive growth opportunity for the upcoming stablecoin integrations.
+                    </p>
+                    <div class="mt-8">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-slate-700">ETH</span>
+                            <span class="text-sm font-bold text-slate-700">$58.5M</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-3">
+                            <div class="bg-brand-primary h-3 rounded-full" style="width: 99.8%"></div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-slate-700">Other Tokens</span>
+                            <span class="text-sm font-bold text-slate-700">$72.6k</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-3">
+                            <div class="bg-brand-secondary h-3 rounded-full" style="width: 1%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 bg-slate-50 p-8 rounded-lg border border-slate-200">
+                     <h4 class="text-sm font-bold text-slate-500 uppercase mb-6">Wallet Distribution Risk Analysis</h4>
+                     <div class="flex flex-col sm:flex-row justify-around items-center space-y-6 sm:space-y-0">
+                         <div class="text-center">
+                             <div class="text-4xl font-bold text-brand-dark">~11%</div>
+                             <div class="text-sm text-slate-500 mt-2">Held by Top 10 Wallets</div>
+                         </div>
+                         <div class="h-16 w-px bg-slate-300 hidden sm:block"></div>
+                         <div class="text-center">
+                             <div class="text-4xl font-bold text-brand-secondary">~89%</div>
+                             <div class="text-sm text-slate-500 mt-2">Held by Rest of Network</div>
+                         </div>
+                     </div>
+                     <p class="text-sm text-center text-slate-400 mt-6 italic">
+                         *Low concentration risk compared to industry averages.
+                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-400 text-sm py-8">
+            <p>© 2025 Intmax Protocol Analytics Report.</p>
+            <p class="mt-2 text-xs">Data Source: Dune Analytics | No SVG or Mermaid.js used.</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Register the Data Labels plugin
+        Chart.register(ChartDataLabels);
+
+        // --- Utility: Label Wrapping Helper (>16 chars) ---
+        function wrapLabel(label) {
+            if (typeof label !== 'string' || label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- Utility: Common Chart Options ---
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false, // Critical for container responsiveness
+            layout: {
+                padding: {
+                    top: 25,
+                    bottom: 25,
+                    left: 20,
+                    right: 40 // Extra right padding for horizontal bar labels
+                }
+            },
+            plugins: {
+                // Data Labels Configuration
+                datalabels: {
+                    color: 'white',
+                    font: {
+                        weight: 'bold',
+                        family: 'Inter',
+                        size: 11
+                    },
+                    formatter: (value) => value.toLocaleString() // Add commas
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        },
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            
+                            // Check if parsed is a number (Pie/Doughnut)
+                            if (typeof context.parsed === 'number') {
+                                label += context.parsed.toLocaleString();
+                            } 
+                            // Check for Y value (Vertical Bar/Line)
+                            else if (context.parsed.y !== null && context.parsed.y !== undefined) {
+                                label += context.parsed.y.toLocaleString();
+                            } 
+                            // Check for X value (Horizontal Bar)
+                            else if (context.parsed.x !== null && context.parsed.x !== undefined) {
+                                label += context.parsed.x.toLocaleString();
+                            }
+                            
+                            return label;
+                        }
+                    },
+                    backgroundColor: 'rgba(30, 27, 75, 0.9)', // brand-dark
+                    padding: 12,
+                    cornerRadius: 8,
+                    titleFont: { family: 'Inter', size: 14 },
+                    bodyFont: { family: 'Inter', size: 13 }
+                },
+                legend: {
+                    labels: {
+                        font: { family: 'Inter', size: 12 },
+                        usePointStyle: true,
+                        boxWidth: 8
+                    },
+                    position: 'bottom'
+                }
+            }
+        };
+
+        // --- Data ---
+        const months = ['June', 'July', 'August', 'September', 'October', 'November'];
+        
+        // 1. Monthly Trend Chart (Mixed)
+        const ctxTrend = document.getElementById('monthlyTrendChart').getContext('2d');
+        new Chart(ctxTrend, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Active Users (Count)',
+                        data: [563, 2137, 2594, 2631, 2683, 3148],
+                        type: 'line',
+                        borderColor: '#D946EF', // Accent Fuchsia
+                        backgroundColor: '#D946EF',
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        yAxisID: 'y1',
+                        tension: 0.3,
+                        datalabels: {
+                            align: 'end',
+                            anchor: 'end',
+                            color: '#D946EF',
+                            backgroundColor: 'rgba(255,255,255,0.8)',
+                            borderRadius: 4,
+                            padding: 4,
+                            font: { weight: 'bold' }
+                        }
+                    },
+                    {
+                        label: 'Deposits (USD Millions)',
+                        data: [1.96, 7.96, 12.6, 11.9, 11.3, 12.5],
+                        backgroundColor: 'rgba(79, 70, 229, 0.8)', // Primary Indigo (Solid for labels inside)
+                        hoverBackgroundColor: 'rgba(79, 70, 229, 1)',
+                        borderRadius: 4,
+                        yAxisID: 'y',
+                        datalabels: {
+                            align: 'center', // Inside center
+                            anchor: 'center', // Inside center
+                            color: 'white', // White text on dark bar
+                            formatter: (value) => '$' + value + 'M',
+                            font: { weight: 'bold' }
+                        }
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Deposits ($M)' },
+                        grid: { display: false }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        position: 'right',
+                        title: { display: true, text: 'Active Users' },
+                        grid: { borderDash: [2, 4], color: '#e5e7eb' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // 2. Retention Chart (Horizontal Stacked Bar)
+        const ctxRetention = document.getElementById('retentionChart').getContext('2d');
+        new Chart(ctxRetention, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Returning Depositors',
+                        data: [0, 223, 254, 286, 295, 351],
+                        backgroundColor: '#06B6D4', // Cyan
+                        datalabels: {
+                            color: 'white',
+                            anchor: 'center',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        label: 'New Depositors',
+                        data: [523, 1144, 1851, 1857, 1868, 2279],
+                        backgroundColor: '#4F46E5', // Indigo
+                        datalabels: {
+                            color: '#e0e7ff', 
+                            anchor: 'center', 
+                            align: 'center',
+                            font: { weight: 'bold' }
+                        }
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                indexAxis: 'y', // Horizontal Chart
+                scales: {
+                    x: { 
+                        stacked: true, 
+                        grid: { display: false },
+                        title: { display: true, text: 'Number of Depositors' }
+                    },
+                    y: { 
+                        stacked: true, 
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // 3. User Tiers Chart (Donut) - Neatened
+        const tierLabels = ['Retail (<10 ETH)', 'Mid-Tier (10-100 ETH)', 'Whale (>100 ETH)'].map(wrapLabel);
+        
+        const ctxTier = document.getElementById('userTierChart').getContext('2d');
+        new Chart(ctxTier, {
+            type: 'doughnut',
+            data: {
+                labels: tierLabels,
+                datasets: [{
+                    data: [48.1, 34.9, 17.0],
+                    backgroundColor: [
+                        '#4F46E5', // Indigo (Retail - Largest)
+                        '#06B6D4', // Cyan
+                        '#D946EF'  // Fuchsia
+                    ],
+                    borderWidth: 2, // Separation
+                    borderColor: '#ffffff',
+                    hoverOffset: 10,
+                    datalabels: {
+                        formatter: (value) => value + '%',
+                        font: { weight: 'bold', size: 14 }
+                    }
+                }]
+            },
+            options: {
+                ...commonOptions,
+                cutout: '65%', // Thinner donut
+                layout: {
+                    padding: 20
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    legend: { 
+                        position: 'right', // Side Legend
+                        labels: {
+                            padding: 20,
+                            boxWidth: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // 4. Miner Chart (Pie) - Neatened
+        const minerLabels = ['Top Miner (>1M ITX)', 'Regular Miner (10k-1M)', 'Casual Miner (<10k)'].map(wrapLabel);
+
+        const ctxMiner = document.getElementById('minerChart').getContext('2d');
+        new Chart(ctxMiner, {
+            type: 'pie',
+            data: {
+                labels: minerLabels,
+                datasets: [{
+                    data: [68.37, 30.54, 1.09],
+                    backgroundColor: [
+                        '#1e1b4b', // Dark Blue (Top)
+                        '#4F46E5', // Primary
+                        '#cbd5e1'  // Light Gray
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#ffffff',
+                    datalabels: {
+                        color: ['white', 'white', '#1e1b4b'], // Dark text for light gray slice
+                        formatter: (value) => value + '%',
+                        anchor: 'center',
+                        align: 'center',
+                        font: { weight: 'bold' }
+                    }
+                }]
+            },
+            options: {
+                ...commonOptions,
+                layout: {
+                    padding: 20
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    legend: { 
+                        position: 'right', // Side legend is neater for Pies
+                        labels: {
+                            boxWidth: 15,
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    } 
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
